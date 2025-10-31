@@ -1,0 +1,86 @@
+// Local array to store todo items
+let todos = [];
+
+function validateForm(todo, date) {
+    if (todo.trim() === '' || date === '') {
+        return false;
+    }
+    return true;
+}
+
+// Function to add a new todo item
+function addTodo() {
+    const todoInput = document.getElementById('todo-input');
+    const todoDate = document.getElementById('todo-date');
+
+    const newTodo = todoInput.value;
+    const newDate = todoDate.value;
+
+    if (!validateForm(newTodo, newDate)) {
+        alert('Please fill out both the task and date!');
+        return;
+    }
+
+    todos.push({ task: newTodo, dueDate: newDate });
+    renderTodos();
+
+    // Clear inputs after adding
+    todoInput.value = '';
+    todoDate.value = '';
+}
+
+// Function to render todo items
+function renderTodos() {
+    const todoList = document.getElementById('todo-list');
+    todoList.innerHTML = '';
+
+    if (todos.length === 0) {
+        todoList.innerHTML = '<li>No todos yet — start adding one!</li>';
+        return;
+    }
+
+    todos.forEach((todo, index) => {
+        const listItem = document.createElement('li');
+        listItem.className = 'flex justify-between items-center mb-2';
+
+        listItem.innerHTML = `
+            <span>${todo.task} - ${todo.dueDate}</span>
+            <button class="text-red-500" onclick="deleteTodo(${index})">Delete</button>
+        `;
+        todoList.appendChild(listItem);
+    });
+}
+
+// Function to delete a todo item
+function deleteTodo(index) {
+    todos.splice(index, 1);
+    renderTodos();
+}
+
+// Function to filter todos (simple example)
+function filterTodo() {
+    const today = new Date().toISOString().split('T')[0];
+    const filtered = todos.filter(todo => todo.dueDate === today);
+
+    const todoList = document.getElementById('todo-list');
+    todoList.innerHTML = '';
+
+    if (filtered.length === 0) {
+        todoList.innerHTML = '<li>No todos for today.</li>';
+    } else {
+        filtered.forEach(todo => {
+            const li = document.createElement('li');
+            li.textContent = `${todo.task} - ${todo.dueDate}`;
+            todoList.appendChild(li);
+        });
+    }
+}
+
+// Clear all todos
+document.getElementById('clear-all-btn').addEventListener('click', () => {
+    todos = [];
+    renderTodos();
+});
+
+// Optional: filter button
+document.getElementById('filter-todos-btn').addEventListener('click', filterTodo);
