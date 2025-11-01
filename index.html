@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do List - Radithya Al Madani Chairuzzaman</title>
+
+    <!-- 
+      Author: Radithya Al Madani Chairuzzaman
+      Date: 31 October 2025
+      Project: To-Do List Web Application - CodingCamp 
+    -->
+
+    <!-- CSS External File Link -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Tailwind CSS CDN Link -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-gray-100 font-sans">
+
+    <!-- Header -->
+    <header class="text-center my-6">
+        <h1 class="text-3xl font-bold text-gray-800">My To-Do List</h1>
+        <p class="text-gray-500 text-sm">Stay organized and productive</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-xl mx-auto bg-white p-6 rounded shadow-md">
+        <!-- Form Section -->
+        <section>
+            <form class="flex gap-3 mb-4" id="todo-form">
+                <!-- Todo Input -->
+                <input class="border p-2 rounded w-full" type="text" id="todo-input" placeholder="Type your task here...">
+
+                <!-- Date Input -->
+                <input class="border p-2 rounded" type="date" id="todo-date">
+            </form>
+
+            <!-- Add Button -->
+            <button class="border p-2 rounded bg-emerald-500 text-white w-full hover:bg-emerald-600" type="button" id="add-todo-btn" onclick="addTodo();">
+                Add Todo
+            </button>
+        </section>
+
+        <!-- Action Section -->
+        <section class="flex justify-between my-4">
+            <button class="border p-2 rounded bg-red-500 text-white hover:bg-red-600" id="clear-all-btn">Clear All</button>
+            <button class="border p-2 rounded bg-blue-500 text-white hover:bg-blue-600" id="filter-todos-btn">Filter</button>
+        </section>
+
+        <!-- Todo List Section -->
+        <section>
+            <ul id="todo-list" class="list-disc pl-5 text-gray-700">
+                <li>No todos yet — start adding one!</li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center mt-6 text-gray-500 text-sm">
+        <p>&copy; 2025 Todo List Website - Radithya</p>
+    </footer>
+
+    <!-- JavaScript External File -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>
